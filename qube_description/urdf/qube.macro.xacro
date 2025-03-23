@@ -2,8 +2,6 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-  <xacro:property name="pi" value="3.14159265359"/>
-
   <!-- Definer materialer -->
   <material name="black">
     <color rgba="0 0 0 1"/>
