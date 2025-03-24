@@ -5,7 +5,7 @@
 	
     <xacro:arg name="baud_rate" default="9600"/>
     <xacro:arg name="device" default="COM1"/>
-    <xacro:arg name="simulation" default="true"/>
+    <xacro:arg name="simulation" default="false"/>
 
     <link name="world"/>
 
