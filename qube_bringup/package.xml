@@ -3,7 +3,7 @@
 <package format="3">
   <name>qube_bringup</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Package for visualising a Quanser Qube</description>
   <maintainer email="52103879+EvenRL@users.noreply.github.com">even</maintainer>
   <license>Apache-2.0</license>
 

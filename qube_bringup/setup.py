@@ -23,7 +23,7 @@ setup(
     zip_safe=True,
     maintainer='even',
     maintainer_email='52103879+EvenRL@users.noreply.github.com',
-    description='TODO: Package description',
+    description='Package for connecting qube_driver and qube_description',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
