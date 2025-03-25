@@ -15,11 +15,12 @@ setup(
     zip_safe=True,
     maintainer='even',
     maintainer_email='52103879+EvenRL@users.noreply.github.com',
-    description='TODO: Package description',
+    description='PID Controller for Qube',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'qube_controller : qube_controller.qube_controller:main'
         ],
     },
 )
