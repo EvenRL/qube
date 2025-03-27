@@ -13,7 +13,7 @@ public:
         this->declare_parameter<double>("Ki", 0.0);
         this->declare_parameter<double>("Kd", 0.0);
         this->declare_parameter<double>("setpoint", 0.0);
-        this->declare_parameter<std::string>("angle", "rotor_joint");
+        this->declare_parameter<std::string>("joint_name", "angle");
         this->declare_parameter<double>("max_velocity", 10.0);
 
         // Get parameters
@@ -21,7 +21,7 @@ public:
         Ki_ = this->get_parameter("Ki").as_double();
         Kd_ = this->get_parameter("Kd").as_double();
         setpoint_ = this->get_parameter("setpoint").as_double();
-        joint_name_ = this->get_parameter("angle").as_string();
+        joint_name_ = this->get_parameter("joint_name").as_string();
         max_velocity_ = this->get_parameter("max_velocity").as_double();
 
         // Initialize PID variables
