@@ -9,11 +9,11 @@ class QubeController : public rclcpp::Node {
 public:
     QubeController() : Node("qube_controller") {
         // Declare parameters
-        this->declare_parameter<double>("Kp", 0.1);
+        this->declare_parameter<double>("Kp", 1);
         this->declare_parameter<double>("Ki", 0.0);
         this->declare_parameter<double>("Kd", 0.0);
-        this->declare_parameter<double>("setpoint", 0.0);
-        this->declare_parameter<std::string>("joint_name", "angle");
+        this->declare_parameter<double>("setpoint", 1.4);
+        this->declare_parameter<std::string>("joint_name", "motor_joint");
         this->declare_parameter<double>("max_velocity", 10.0);
 
         // Get parameters

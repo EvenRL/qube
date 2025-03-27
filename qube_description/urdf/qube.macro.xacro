@@ -51,7 +51,7 @@
       </visual>
     </link>
 
-    <joint name="angle" type="revolute">
+    <joint name="motor_joint" type="revolute">
       <parent link="stator_link"/>
       <child link="rotor_link"/>
       <origin xyz="0 0 ${stator_size/2 + rotor_length/2}" rpy="0 0 0"/>
