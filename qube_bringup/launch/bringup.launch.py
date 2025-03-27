@@ -65,7 +65,7 @@ def generate_launch_description():
             executable='joint_state_publisher_gui',
             condition=IfCondition(gui)
         ),
-        # Kjør joint state publisher uten gui hvis 'gui' parameter ikke er satt
+        # Kjør joint state publisher uten gui hvis 'gui' parameter ikke er satt (default)
         Node(
             package='joint_state_publisher',
             executable='joint_state_publisher',
