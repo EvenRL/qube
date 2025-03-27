@@ -16,6 +16,9 @@ public:
         this->declare_parameter<std::string>("joint_name", "motor_joint");
         this->declare_parameter<double>("max_velocity", 10.0);
 
+        parameterCallback = this->add_on_set_parameters_callback([this](const std::vector<rclcpp::Parameter> &parameters) {
+            return this->parameter_callback(parameters);});
+
         // Get parameters
         Kp_ = this->get_parameter("Kp").as_double();
         Ki_ = this->get_parameter("Ki").as_double();
@@ -80,6 +83,48 @@ private:
         velocity_pub_->publish(velocity_msg);
     }
 
+    rcl_interfaces::msg::SetParametersResult parameter_callback(const std::vector<rclcpp::Parameter> & parameters) {
+        rcl_interfaces::msg::SetParametersResult result;
+            
+        for (auto param : parameters) {
+            if (param.get_name() == "Kp") {
+                this->Kp_ = param.as_double(); 
+                result.successful = true;
+                result.reason = "success";
+            }
+            else if (param.get_name() == "Ki") {
+                this->Ki_ = param.as_double();
+                result.successful = true;
+                result.reason = "success";
+            }
+            else if (param.get_name() == "Kd") {
+                this->Kd_ = param.as_double();
+                result.successful = true;
+                result.reason = "success";
+            }
+            else if (param.get_name() == "setpoint") {
+                this->setpoint_ = param.as_double();
+                result.successful = true;
+                result.reason = "success";
+            }
+            else if (param.get_name() == "joint_name") {
+                this->joint_name_ = param.as_string();
+                result.successful = true;
+                result.reason = "success";
+            }
+            else if (param.get_name() == "max_velocity") {
+                this->max_velocity_ = param.as_double();
+                result.successful = true;
+                result.reason = "success";
+            }
+            else {
+                result.successful = false;
+                result.reason = "unknown parameter";
+            }
+        }
+        return result;
+    }
+
     // Parameters
     double Kp_;
     double Ki_;
@@ -87,6 +132,8 @@ private:
     double setpoint_;
     std::string joint_name_;
     double max_velocity_;
+
+    OnSetParametersCallbackHandle::SharedPtr parameterCallback;
 
     // PID variables
     double integral_;
