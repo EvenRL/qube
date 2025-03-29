@@ -11,7 +11,7 @@ import os
 
 def generate_launch_description():
 
-    gui = LaunchConfiguration('gui')
+    gui = LaunchConfiguration('joint_state_gui')
 
     baud_rate_launch_arg = DeclareLaunchArgument(
       'baud_rate', default_value=TextSubstitution(text='9600'), description="Baud rate for communication with qube"
@@ -23,7 +23,7 @@ def generate_launch_description():
       'simulation', default_value=TextSubstitution(text='false'), description="Enable simulation mode"
     )
     gui_launch_arg = DeclareLaunchArgument(
-        'gui', default_value=TextSubstitution(text='false'), description="Enable GUI for joint state publisher"
+        'joint_state_gui', default_value=TextSubstitution(text='false'), description="Enable GUI for joint state publisher"
     )
 
     # Les xacro fil og viderekoble launch parametere, funksjon hentet og tilpasset fra https://robotics.stackexchange.com/questions/102165/ros2-python-launch-how-to-forward-launch-arguments-to-xacro-models
