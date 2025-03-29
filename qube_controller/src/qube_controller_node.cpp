@@ -9,12 +9,42 @@ class QubeController : public rclcpp::Node {
 public:
     QubeController() : Node("qube_controller") {
         // Declare parameters
-        this->declare_parameter<double>("Kp", 1);
-        this->declare_parameter<double>("Ki", 0.0);
-        this->declare_parameter<double>("Kd", 0.0);
-        this->declare_parameter<double>("setpoint", 1.4);
-        this->declare_parameter<std::string>("joint_name", "motor_joint");
-        this->declare_parameter<double>("max_velocity", 10.0);
+        auto kp_desc = rcl_interfaces::msg::ParameterDescriptor{};
+        kp_desc.description = "Proportional gain.";
+        kp_desc.floating_point_range = {rcl_interfaces::msg::FloatingPointRange()
+            .set__from_value(0.0)
+            .set__to_value(1000.0)};
+        
+        auto ki_desc = rcl_interfaces::msg::ParameterDescriptor{};
+        ki_desc.description = "Integral gain.";
+        ki_desc.floating_point_range = {rcl_interfaces::msg::FloatingPointRange()
+            .set__from_value(0.0)
+            .set__to_value(1000.0)};
+
+        auto kd_desc = rcl_interfaces::msg::ParameterDescriptor{};
+        kd_desc.description = "Derivative gain.";
+        kd_desc.floating_point_range = {rcl_interfaces::msg::FloatingPointRange()
+            .set__from_value(0.0)
+            .set__to_value(1000.0)};
+        
+        auto setpoint_desc = rcl_interfaces::msg::ParameterDescriptor{};
+        setpoint_desc.description = "Position/angle setpoint for qube, value in radians.";
+
+        auto jointname_desc = rcl_interfaces::msg::ParameterDescriptor{};
+        jointname_desc.description = "Name of joint to control";
+
+        auto maxv_desc = rcl_interfaces::msg::ParameterDescriptor{};
+        maxv_desc.description = "Max allowed velocity of qube";
+        maxv_desc.floating_point_range = {rcl_interfaces::msg::FloatingPointRange()
+            .set__from_value(0.0)
+            .set__to_value(1000.0)};
+
+        this->declare_parameter<double>("Kp", 1, kp_desc);
+        this->declare_parameter<double>("Ki", 0.0, ki_desc);
+        this->declare_parameter<double>("Kd", 0.0, kd_desc);
+        this->declare_parameter<double>("setpoint", 0.0, setpoint_desc);
+        this->declare_parameter<std::string>("joint_name", "motor_joint", jointname_desc);
+        this->declare_parameter<double>("max_velocity", 10.0, maxv_desc);
 
         parameterCallback = this->add_on_set_parameters_callback([this](const std::vector<rclcpp::Parameter> &parameters) {
             return this->parameter_callback(parameters);});
