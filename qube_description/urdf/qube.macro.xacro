@@ -55,7 +55,7 @@
       <parent link="stator_link"/>
       <child link="rotor_link"/>
       <origin xyz="0 0 ${stator_size/2 + rotor_length/2}" rpy="0 0 0"/>
-      <axis xyz="0 0 1"/>
+      <axis xyz="0 0 -1"/>
     </joint>
 
     <!-- Vinkel-indikator -->
