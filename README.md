@@ -2,7 +2,7 @@
 This repository is for the Mini-project assignment in subject AIS2105.  The repository contains packages for controlling and simulating a Quanser Qube.
 
 ## qube_description
-This package is contains urdf and launch files to visualize a qube using Rviz2.
+This package contains urdf and launch files to visualize a qube using Rviz2.
 
 ![quberviz](/doc/screenshots/rviz.png)
 
